@@ -1,1 +1,6 @@
 rootProject.name = 'code'
+include 'JCache'
+include 'kafka'
+include 'ps'
+include 'ds'
+

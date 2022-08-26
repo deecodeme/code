@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
         if (this.boards.containsKey(id)) {
             this.boards.remove(id);
         } else {
-            throw new RuntimeException(String.format("Board with id: %s not found", id));
+            throw new RuntimeException(String.format("GameBoard with id: %s not found", id));
         }
     }
 
@@ -41,7 +41,7 @@ public class BoardServiceImpl implements BoardService {
             board.setPrivacy(privacy);
             return board;
         } else {
-            throw new RuntimeException(String.format("Board with id: %s not found", id));
+            throw new RuntimeException(String.format("GameBoard with id: %s not found", id));
         }
     }
 
@@ -52,7 +52,7 @@ public class BoardServiceImpl implements BoardService {
             board.setName(name);
             return board;
         } else {
-            throw new RuntimeException(String.format("Board with id: %s not found", id));
+            throw new RuntimeException(String.format("GameBoard with id: %s not found", id));
         }
     }
 
@@ -62,7 +62,7 @@ public class BoardServiceImpl implements BoardService {
             Board board = this.boards.get(id);
             board.addMembers(userId);
         } else {
-            throw new RuntimeException(String.format("Board with id: %s not found", id));
+            throw new RuntimeException(String.format("GameBoard with id: %s not found", id));
         }
     }
 
@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
             Board board = this.boards.get(id);
             board.deleteMember(userId);
         } else {
-            throw new RuntimeException(String.format("Board with id: %s not found", id));
+            throw new RuntimeException(String.format("GameBoard with id: %s not found", id));
         }
     }
 

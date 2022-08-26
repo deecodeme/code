@@ -19,20 +19,20 @@ public class ChannelImpl implements Channel {
     @Override
     public void put(Object val) throws InterruptedException {
         lock.lock();
-        try{
-            while (queue.size() == CAPACITY){
+        try {
+            while (queue.size() == CAPACITY) {
                 System.out.println("Buffer capacity full, awaiting...");
                 bufferNotFull.await();
             }
             boolean isAdded = queue.offer(val);
-            if (isAdded){
+            if (isAdded) {
                 System.out.printf("%d Item added to channel successfully, thread: %s \n",
                         val, Thread.currentThread().getName());
-                System.out.println(Thread.currentThread().getName() +" Signalling that, buffer is not empty anymore");
+                System.out.println(Thread.currentThread().getName() + " Signalling that, buffer is not empty anymore");
                 bufferNotEmpty.signalAll();
             }
 
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
@@ -41,8 +41,8 @@ public class ChannelImpl implements Channel {
     public Object get() throws InterruptedException {
         Object val;
         lock.lock();
-        try{
-            while(queue.size() == 0){
+        try {
+            while (queue.size() == 0) {
                 System.out.println(Thread.currentThread().getName() + " Awaiting buffer to get filled with more data");
                 bufferNotEmpty.await();
             }
@@ -50,7 +50,7 @@ public class ChannelImpl implements Channel {
             System.out.println(Thread.currentThread().getName() + " Removed " + val.toString() + " from channel");
             System.out.println(Thread.currentThread().getName() + " Signal to threads waiting on buffer to get empty");
             bufferNotFull.signalAll();
-        }finally {
+        } finally {
             lock.unlock();
         }
         return val;

@@ -9,7 +9,7 @@ public class MapDemo {
         public int start;
         public int end;
 
-        public Interval(int start, int end){
+        public Interval(int start, int end) {
             this.start = start;
             this.end = end;
         }
@@ -35,11 +35,11 @@ public class MapDemo {
         while (sortedIterator.hasNext()) {
             System.out.printf("%s ", sortedIterator.next());
         }
-        Map<Interval, Integer> sortedInterval = new TreeMap<>((i, j) -> Integer.compare(i.start, j.start));
+        Map<Interval, Integer> sortedInterval = new TreeMap<>((i, j) -> i.start - j.start);
         sortedInterval.put(new Interval(2, 4), 2);
         sortedInterval.put(new Interval(5, 3), 2);
         sortedInterval.put(new Interval(10, 14), 2);
         sortedInterval.put(new Interval(1, 4), 1);
-        sortedInterval.forEach((k, v) -> System.out.println(k.toString())) ;
+        sortedInterval.forEach((k, v) -> System.out.println(k.toString()));
     }
 }
