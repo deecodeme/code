@@ -1,0 +1,31 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java'
+}
+
+group = 'com.poc.code'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation(libs.lombok)
+    annotationProcessor(libs.lombok)
+
+    testCompileOnly(libs.lombok)
+    testImplementation(libs.hamcrest)
+    testAnnotationProcessor(libs.lombok)
+    testImplementation(libs.jupiter)
+    testRuntimeOnly(libs.jupiter)
+}
+
+bootJar {
+    enabled = true
+}
