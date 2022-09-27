@@ -1,22 +1,27 @@
 package com.poc.code.demo.concurrency;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.*;
 import java.util.stream.IntStream;
 
 public class FutureAndCallbackDemo {
+    private static final Logger log = LoggerFactory.getLogger(FutureAndCallbackDemo.class);
+
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         Callable<String> callable = () -> {
             System.out.println("Sleeping in future");
             Thread.sleep(1000);
             return "Hello from future";
         };
+
+        Future<String> future = executorService.submit(callable);
+        if (future.isDone()) {
+            log.info("Future is done. Result: {}", future.get());
+        }
 
         CompletableFuture<String> completableFuture = new CompletableFuture<>();
         executorService.execute(() -> {

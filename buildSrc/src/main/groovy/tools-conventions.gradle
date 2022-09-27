@@ -5,7 +5,6 @@ plugins {
 checkstyle {
     toolVersion '9.0'
     configFile file(rootProject.projectDir.absolutePath + '/config/checkstyle/checkstyle.xml')
-    checkstyleTest.enabled true
     ignoreFailures true
 }
 

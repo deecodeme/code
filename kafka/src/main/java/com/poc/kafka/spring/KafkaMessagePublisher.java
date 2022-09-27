@@ -1,10 +1,12 @@
 package com.poc.kafka.spring;
 
 import com.poc.kafka.MessagePublisher;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
+
+import java.util.function.BiConsumer;
 
 public class KafkaMessagePublisher implements MessagePublisher {
     private KafkaTemplate<String, String> kafkaTemplate;
@@ -19,8 +21,7 @@ public class KafkaMessagePublisher implements MessagePublisher {
     }
 
     @Override
-    public void publish(final String topic, final String message, final ListenableFutureCallback callback) {
+    public void publish(final String topic, final String message, final BiConsumer<RecordMetadata, Exception> callback) {
         ListenableFuture<SendResult<String, String>> future = this.kafkaTemplate.send(topic, message);
-        future.addCallback(callback);
     }
 }

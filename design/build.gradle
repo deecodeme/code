@@ -1,7 +1,14 @@
 plugins {
-    id 'code.spring-java-conventions'
+    id 'tools-conventions'
+    id 'java-conventions'
+    id 'spring-conventions'
 }
 
 dependencies {
     implementation project(':ds')
+    implementation 'org.reflections:reflections:0.10.2'
+}
+
+bootJar {
+    enabled = true
 }
