@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+version = '1.0.0'
+repositories {
+    mavenCentral()
+}
+tasks.register('uberJar', org.gradle.jvm.tasks.Jar){
+    archiveClassifier = 'uber'
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}

@@ -4,7 +4,7 @@ include 'kafka'
 include 'ps'
 include 'ds'
 include 'mongodb'
-include 'design'
+include 'practices'
 include 'poc'
 include 'utils'
 
@@ -12,9 +12,21 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version('lombok', '1.18.24')
+            version('jupiter', '5.8.1')
+            version('log4j2', '2.19.0')
+            version('sl4j', '2.0.2')
+            version('log4j2', '2.19.0')
+            version('hamcrest', '2.2')
+            version('jmh', '1.35')
             library('lombok', 'org.projectlombok', 'lombok').versionRef('lombok')
-            library('jupiter', 'org.junit.jupiter:junit-jupiter-api:5.8.1')
-            library('hamcrest', 'org.hamcrest:hamcrest:2.2')
+            library('jupiter', 'org.junit.jupiter', 'junit-jupiter-api').versionRef("jupiter")
+            library('hamcrest', 'org.hamcrest', 'hamcrest').versionRef('hamcrest')
+            library('sl4j', 'org.slf4j', 'slf4j-api').versionRef('sl4j')
+            library('log4j2-sl4j', 'org.apache.logging.log4j', 'log4j-slf4j-impl').versionRef('log4j2')
+            library('log4j2-core', 'org.apache.logging.log4j', 'log4j-core').versionRef('log4j2')
+            library('log4j2-api', 'org.apache.logging.log4j', 'log4j-api').versionRef('log4j2')
+            library('jmh-core', 'org.openjdk.jmh', 'jmh-core').versionRef('jmh')
+            library('jmh-annotation-procesor', 'org.openjdk.jmh', 'jmh-generator-annprocess').versionRef('jmh')
         }
     }
 }

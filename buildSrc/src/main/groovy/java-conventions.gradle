@@ -4,19 +4,28 @@ plugins {
 
 group = 'com.poc.code'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
 }
 
+//java {
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(17)
+//        vendor = JvmVendorSpec.AMAZON
+//    }
+//}
+
 dependencies {
     implementation(libs.lombok)
     annotationProcessor(libs.lombok)
-
     testCompileOnly(libs.lombok)
     testImplementation(libs.hamcrest)
     testAnnotationProcessor(libs.lombok)
+    annotationProcessor(libs.jmh.annotation.procesor)
+    implementation(libs.jmh.core)
     testImplementation(libs.jupiter)
     testRuntimeOnly(libs.jupiter)
 }
