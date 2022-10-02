@@ -1,0 +1,18 @@
+plugins {
+    id 'checkstyle'
+}
+
+checkstyle {
+    toolVersion '9.0'
+    configFile file(rootProject.projectDir.absolutePath + '/config/checkstyle/checkstyle.xml')
+    ignoreFailures true
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile(rootProject.projectDir.absolutePath + '/config/checkstyle/xsl/checkstyle-custom.xsl')
+    }
+}
+

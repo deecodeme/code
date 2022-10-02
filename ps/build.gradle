@@ -1,5 +1,7 @@
 plugins {
-    id 'code.spring-java-conventions'
+    id 'tools-conventions'
+    id 'java-conventions'
+    id 'spring-conventions'
 }
 
 dependencies {

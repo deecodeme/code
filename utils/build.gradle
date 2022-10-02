@@ -1,0 +1,14 @@
+plugins {
+    id 'java-conventions'
+    id 'tools-conventions'
+}
+
+tasks.jar {
+    manifest{
+        attributes["Main-Class"] = 'com.poc.code.Main'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,7 +1,0 @@
-plugins {
-    id 'code.spring-java-conventions'
-}
-
-dependencies {
-    implementation project(':ds')
-}

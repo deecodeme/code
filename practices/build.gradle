@@ -1,0 +1,35 @@
+plugins {
+    id 'tools-conventions'
+    id 'java-conventions'
+    id 'spring-conventions'
+}
+
+// https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets
+sourceSets {
+    jmh {
+        java.srcDirs = ['src/jmh/java']
+        resources.srcDirs = ['src/jmh/resources']
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
+dependencies {
+    implementation project(':ds')
+    implementation 'org.reflections:reflections:0.10.2'
+    jmhImplementation(libs.jmh.core)
+    jmhAnnotationProcessor(libs.jmh.annotation.procesor)
+}
+
+bootJar {
+    enabled = true
+}
+
+// set up jmh task. Run from parent directory ./gradlew :design:jmh
+// https://docs.gradle.org/current/dsl/org.gradle.api.tasks.JavaExec.html
+task jmh(type: JavaExec, dependsOn: jmhClasses) {
+    main = 'org.openjdk.jmh.Main'
+    classpath = sourceSets.jmh.compileClasspath + sourceSets.jmh.runtimeClasspath
+}
+
+// to make sure benchmarks always get compiled
+classes.finalizedBy(jmhClasses)
