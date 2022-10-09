@@ -26,8 +26,12 @@ dependencies {
     testAnnotationProcessor(libs.lombok)
     annotationProcessor(libs.jmh.annotation.procesor)
     implementation(libs.jmh.core)
+    implementation(libs.sl4j)
+    implementation(libs.log4j2.sl4j)
+    implementation(libs.log4j2.core)
+    implementation(libs.log4j2.api)
     testImplementation(libs.jupiter)
-    testRuntimeOnly(libs.jupiter)
+    testRuntimeOnly(libs.jupiter.engine)
 }
 
 test {
