@@ -1,4 +1,0 @@
-kafka:
-  bootstrapServer: localhost:9092
-  topic:
-    foo: code.topic.foo
