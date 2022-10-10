@@ -16,12 +16,17 @@ public class KafkaMessagePublisher implements MessagePublisher {
     }
 
     @Override
-    public void publish(final String topic, final String message) {
+    public void publishFireNForget(String topic, String message) {
         this.kafkaTemplate.send(topic, message);
     }
 
     @Override
-    public void publish(final String topic, final String message, final BiConsumer<RecordMetadata, Exception> callback) {
+    public void publishBlocking(final String topic, final String message) {
+        this.kafkaTemplate.send(topic, message);
+    }
+
+    @Override
+    public void publishNonBlocking(final String topic, final String message, final BiConsumer<RecordMetadata, Exception> callback) {
         ListenableFuture<SendResult<String, String>> future = this.kafkaTemplate.send(topic, message);
     }
 }
