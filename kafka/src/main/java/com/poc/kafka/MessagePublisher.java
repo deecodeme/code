@@ -4,9 +4,10 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.function.BiConsumer;
 
-public interface MessagePublisher {
-    void publishFireNForget(String topic, String message);
-    void publishBlocking(String topic, String message);
+public interface MessagePublisher<K, V> {
+    void publishFireNForget(String topic, V message);
+
+    void publishBlocking(String topic, V message);
 
     /*
     Non-Blocking kafka send
@@ -14,5 +15,5 @@ public interface MessagePublisher {
     Callbacks should be reasonably and non-blocking fast to not delay the message sends()
     If you want to do some blocking or time taking operation in the callback, please do so in another thread
      */
-    void publishNonBlocking(String topic, String message, BiConsumer<RecordMetadata, Exception> callback);
+    void publishNonBlocking(String topic, V message, BiConsumer<RecordMetadata, Exception> callback);
 }

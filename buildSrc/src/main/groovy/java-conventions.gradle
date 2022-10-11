@@ -27,6 +27,7 @@ dependencies {
     annotationProcessor(libs.jmh.annotation.procesor)
     implementation(libs.jmh.core)
     implementation(libs.sl4j)
+    implementation(libs.sl4j.simple)
     implementation(libs.log4j2.sl4j)
     implementation(libs.log4j2.core)
     implementation(libs.log4j2.api)

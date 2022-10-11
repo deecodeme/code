@@ -11,9 +11,9 @@ import java.util.function.BiConsumer;
 
 class KafkaConnectProducerTest {
     Logger log = LoggerFactory.getLogger(KafkaConnectProducerTest.class);
-    private final MessagePublisher kafkaConnectProducer = KafkaConnectProducer.fromProperties();
+    private final MessagePublisher<String, String> kafkaConnectProducer = KafkaConnectProducer.fromProperties();
 
-    private BiConsumer<RecordMetadata, Exception> producerCallbackConsumer = (metadata, e) -> {
+    private final BiConsumer<RecordMetadata, Exception> producerCallbackConsumer = (metadata, e) -> {
         if (e != null) {
             log.error("Error while publishing. error: {}", e.getMessage());
         } else {
@@ -31,6 +31,6 @@ class KafkaConnectProducerTest {
 
     @Test
     void publishWithCallback() {
-        this.kafkaConnectProducer.publishNonBlocking("test", "test message", producerCallbackConsumer);
+        this.kafkaConnectProducer.publishNonBlocking("test", "test message with", producerCallbackConsumer);
     }
 }
