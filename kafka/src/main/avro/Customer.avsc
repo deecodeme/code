@@ -1,0 +1,22 @@
+{
+  "namespace": "customer.avro",
+  "type": "record",
+  "name": "User",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "favourite_colour",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  ]
+}

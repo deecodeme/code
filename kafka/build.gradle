@@ -2,6 +2,8 @@ plugins {
     id 'tools-conventions'
     id 'java-conventions'
     id 'spring-conventions'
+    id 'avro-gradle-plugin'
+//    id "com.commercehub.gradle.plugin.avro" version "0.16.0"
 }
 
 dependencies {
@@ -10,4 +12,20 @@ dependencies {
     implementation 'org.apache.kafka:connect-api:3.2.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+    compileOnly('org.apache.maven:maven-artifact:2.2.1')
+    implementation 'org.apache.avro:avro:1.11.1'
+    compileOnly('org.apache.avro:avro-compiler:1.7.1')
+    compileOnly('org.apache.avro.gradle:avro-gradle-plugin:1.7.1')
+    compileAvro
+}
+
+compileAvro.source = 'src/main/avro'
+compileAvro.destinationDir = file("$buildDir/generated-sources/avro")
+
+sourceSets {
+    main{
+        java{
+            srcDir = compileAvro.destinationDir
+        }
+    }
 }

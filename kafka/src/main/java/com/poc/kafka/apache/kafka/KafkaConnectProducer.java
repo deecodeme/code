@@ -79,6 +79,12 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
 
     @Override
     public void publishNonBlocking(String topic, V message, BiConsumer<RecordMetadata, Exception> callback) {
-        this.producer.send(new ProducerRecord<>(topic, message), callback::accept);
+        try {
+            Future<RecordMetadata> future = this.producer.send(new ProducerRecord<>(topic, message), callback::accept);
+            log.info("Message published: {}", future.toString());
+        } catch (Exception e) {
+            log.error("Error while sending: {}", e.getMessage());
+            throw e;
+        }
     }
 }
