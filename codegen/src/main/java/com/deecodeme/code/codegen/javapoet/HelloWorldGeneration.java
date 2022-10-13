@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class HelloWorldGeneration {
-    Logger log = LoggerFactory.getLogger(HelloWorldGeneration.class.getName());
+    private final Logger log = LoggerFactory.getLogger(HelloWorldGeneration.class.getName());
 
     public void generateHelloWorldClass() {
         MethodSpec mainMethodSpec = MethodSpec.methodBuilder("mainMethod")
@@ -39,7 +39,7 @@ public class HelloWorldGeneration {
 
         try {
             JavaFile.builder("com.deecodeme.code.codegen.javapoet", typeSpec)
-                    .build().writeToPath(Path.of(System.getProperty("user.dir")+"/src/main/java"));
+                    .build().writeToPath(Path.of(System.getProperty("user.dir") + "/src/main/java"));
         } catch (IOException ex) {
             log.error("Error while writing the type to file: {}", ex.getMessage());
         }
