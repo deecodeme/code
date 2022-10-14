@@ -1,7 +1,7 @@
 {
   "namespace": "customer.avro",
   "type": "record",
-  "name": "User",
+  "name": "Customer",
   "fields": [
     {
       "name": "id",
