@@ -1,7 +1,9 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 pluginManagement{
     repositories {
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
@@ -15,8 +17,18 @@ include 'practices'
 include 'poc'
 include 'utils'
 include 'zookeeper'
+include 'codegen'
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            url 'https://packages.confluent.io/maven/'
+        }
+    }
+
     versionCatalogs {
         libs {
             version('lombok', '1.18.24')
@@ -39,5 +51,4 @@ dependencyResolutionManagement {
         }
     }
 }
-include 'codegen'
 

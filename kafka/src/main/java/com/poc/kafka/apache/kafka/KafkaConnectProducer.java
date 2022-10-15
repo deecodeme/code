@@ -36,6 +36,10 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
         return new KafkaConnectProducer(new KafkaProducer<K, V>(configProps));
     }
 
+    public static <K, V> KafkaConnectProducer<K, V> withProperties(Properties props) {
+        return new KafkaConnectProducer<>(new KafkaProducer<K, V>(props));
+    }
+
     public static <K, V> KafkaConnectProducer<K, V> withSerializers(Serializer<K> keySerializer, Serializer<V> valSerializer) {
         Map<String, Object> configProps = Map.of(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, DEFAULT_BOOTSTRAP_SERVER);
         return new KafkaConnectProducer<K, V>(new KafkaProducer<K, V>(configProps, keySerializer, valSerializer));
