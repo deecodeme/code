@@ -3,7 +3,6 @@ package com.poc.kafka.apache.kafka;
 import com.poc.kafka.MessagePublisher;
 import com.poc.kafka.apache.kafka.serializers.Customer;
 import com.poc.kafka.apache.kafka.serializers.CustomerSerializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
@@ -18,6 +17,9 @@ import java.util.Properties;
 import java.util.function.BiConsumer;
 
 class KafkaConnectProducerTest {
+    private static final String BOOTSTRAP_SERVERS_LOCAL = "localhost:9092";
+    private static final String KAFKA_AVRO_SERIALIZER = "io.confluent.kafka.serializers.KafkaAvroSerializer";
+    private static final String SCHEMA_REGISTRY_LOCAL = "http://localhost:8081";
     Logger log = LoggerFactory.getLogger(KafkaConnectProducerTest.class);
 
     private final BiConsumer<RecordMetadata, Exception> producerCallbackConsumer = (metadata, e) -> {
@@ -42,16 +44,22 @@ class KafkaConnectProducerTest {
 
     @Test
     void publishWithAvroSerializer() {
-        KafkaConnectProducer kafkaConnectProducer = KafkaConnectProducer.withSerializers(new KafkaAvroSerializer(), new KafkaAvroSerializer());
+        Properties props = new Properties();
+        props.put("bootstrap.servers", BOOTSTRAP_SERVERS_LOCAL);
+        props.put("key.serializer", KAFKA_AVRO_SERIALIZER);
+        props.put("value.serializer", KAFKA_AVRO_SERIALIZER);
+        props.put("schema.registry.url", SCHEMA_REGISTRY_LOCAL);
+        KafkaConnectProducer<String, customer.avro.Customer> kafkaConnectProducer = KafkaConnectProducer.withProperties(props);
         kafkaConnectProducer.publishBlocking("test", customer.avro.Customer.newBuilder().setId(123).setName("Deepak").setFavouriteColour("Green").build());
     }
 
     @Test
     void publishAvoGenericRecord() {
         Properties props = new Properties();
-        props.put("bootstrap.server", "localhost:9092");
-        props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
-        props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
+        props.put("bootstrap.servers", BOOTSTRAP_SERVERS_LOCAL);
+        props.put("key.serializer", KAFKA_AVRO_SERIALIZER);
+        props.put("value.serializer", KAFKA_AVRO_SERIALIZER);
+        props.put("schema.registry.url", SCHEMA_REGISTRY_LOCAL);
 
         String schemaString = "{\n" +
                 "  \"namespace\": \"customer.avro\",\n" +
