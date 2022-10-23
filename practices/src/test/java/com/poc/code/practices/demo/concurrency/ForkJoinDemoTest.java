@@ -16,15 +16,12 @@ class ForkJoinDemoTest {
         int result = new ForkJoinDemo.FibonacciRecursiveTask(n).result();
         Assertions.assertEquals(55, result);
         log.info("Fibonacci of {} is {}", n, result);
-
-        result = new ForkJoinDemo.FibonacciForkJoinTask(n).result();
-        Assertions.assertEquals(55, result);
-        log.info("Fibonacci of {} is {}", n, result);
     }
 
     @Test
     void forkNAdd(){
-        int sum = new ForkJoinDemo.ForkJoinAdder(IntStream.range(1, 100).toArray()).compute();
+        int[] num = IntStream.range(1, 101).toArray();
+        int sum = new ForkJoinDemo.ForkJoinAdder(num).compute();
         log.info("Sum of 1 to {}: {}", 100, sum);
         Assertions.assertEquals(101*50, sum);
     }
