@@ -27,6 +27,46 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
         this.producer = producer;
     }
 
+    public static class Builder<K, V> {
+        public static final Builder INSTANCE = new Builder<>();
+        private String bootstrapServers;
+        private Class<Serializer<K>> keySerializerClass;
+        private Class<Serializer<V>> valSerializerClass;
+        private Class<Partitioner> partitionerClass;
+
+        private Builder() {
+        }
+
+        public Builder<K, V> bootstrapServers(String bootstrapServers) {
+            this.bootstrapServers = bootstrapServers;
+            return this;
+        }
+
+        public Builder<K, V> keySerializerClass(Class<Serializer<K>> keySerializerClass) {
+            this.keySerializerClass = keySerializerClass;
+            return this;
+        }
+
+        public Builder<K, V> valSerializerClass(Class<Serializer<V>> valSerializerClass) {
+            this.valSerializerClass = valSerializerClass;
+            return this;
+        }
+
+        public Builder<K, V> partitionerClass(Class<Partitioner> partitionerClass) {
+            this.partitionerClass = partitionerClass;
+            return this;
+        }
+
+        public KafkaConnectProducer<K, V> build() {
+            Map<String, Object> configProps = Map.ofEntries(
+                    Map.entry(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers != null ? this.bootstrapServers : DEFAULT_BOOTSTRAP_SERVER),
+                    Map.entry(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, this.keySerializerClass != null ? this.keySerializerClass : StringSerializer.class),
+                    Map.entry(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, this.valSerializerClass != null ? this.valSerializerClass : StringSerializer.class)
+            );
+            return new KafkaConnectProducer<K, V>(new KafkaProducer<K, V>(configProps));
+        }
+    }
+
     public static <K, V> KafkaConnectProducer<K, V> withDefaultConfig() {
         Map<String, Object> configProps = Map.ofEntries(
                 Map.entry(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, DEFAULT_BOOTSTRAP_SERVER),
@@ -38,11 +78,6 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
 
     public static <K, V> KafkaConnectProducer<K, V> withProperties(Properties props) {
         return new KafkaConnectProducer<>(new KafkaProducer<K, V>(props));
-    }
-
-    public static <K, V> KafkaConnectProducer<K, V> withSerializers(Serializer<K> keySerializer, Serializer<V> valSerializer) {
-        Map<String, Object> configProps = Map.of(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, DEFAULT_BOOTSTRAP_SERVER);
-        return new KafkaConnectProducer<K, V>(new KafkaProducer<K, V>(configProps, keySerializer, valSerializer));
     }
 
     public static <K, V> KafkaConnectProducer<K, V> fromProperties() throws IOException {

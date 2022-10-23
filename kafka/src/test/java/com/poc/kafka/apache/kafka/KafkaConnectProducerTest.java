@@ -37,8 +37,19 @@ class KafkaConnectProducerTest {
     }
 
     @Test
+    void publishWithDefaultConfig() throws IOException {
+        MessagePublisher<String, String> kafkaConnectProducer = KafkaConnectProducer.withDefaultConfig();
+        kafkaConnectProducer.publishBlocking("test", "test message");
+    }
+
+    @Test
     void publishCustomSerializer() {
-        MessagePublisher<String, Customer> kafkaConnectProducer = KafkaConnectProducer.withSerializers(new StringSerializer(), new CustomerSerializer());
+        MessagePublisher<String, Customer> kafkaConnectProducer = KafkaConnectProducer.Builder
+                .INSTANCE
+                .bootstrapServers(BOOTSTRAP_SERVERS_LOCAL)
+                .keySerializerClass(StringSerializer.class)
+                .valSerializerClass(CustomerSerializer.class)
+                .build();
         kafkaConnectProducer.publishBlocking("test", new Customer(1234, "deepak"));
     }
 
