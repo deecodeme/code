@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.Future;
 import java.util.function.BiConsumer;
 
@@ -33,6 +31,10 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
         private Class<Serializer<K>> keySerializerClass;
         private Class<Serializer<V>> valSerializerClass;
         private Class<Partitioner> partitionerClass;
+
+        private Class<ProducerInterceptor> producerInterceptorClass;
+
+        private List<String> interceptorClasses;
 
         private Builder() {
         }
@@ -57,12 +59,20 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
             return this;
         }
 
+        public Builder<K, V> interceptorClasses(List<String> interceptorClasses) {
+            this.interceptorClasses = interceptorClasses;
+            return this;
+        }
+
         public KafkaConnectProducer<K, V> build() {
-            Map<String, Object> configProps = Map.ofEntries(
+            Map<String, Object> configProps = new HashMap<>(Map.ofEntries(
                     Map.entry(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers != null ? this.bootstrapServers : DEFAULT_BOOTSTRAP_SERVER),
                     Map.entry(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, this.keySerializerClass != null ? this.keySerializerClass : StringSerializer.class),
                     Map.entry(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, this.valSerializerClass != null ? this.valSerializerClass : StringSerializer.class)
-            );
+            ));
+            if (interceptorClasses != null) {
+                configProps.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptorClasses);
+            }
             return new KafkaConnectProducer<K, V>(new KafkaProducer<K, V>(configProps));
         }
     }
@@ -102,14 +112,18 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
     }
 
     @Override
-    public void publishFireNForget(String topic, V message) {
-        this.producer.send(new ProducerRecord<>(topic, message));
+    public void publishFireNForget(String topic, V message, Map<String, byte[]> headers) {
+        final ProducerRecord<K, V> record = new ProducerRecord<>(topic, message);
+        headers.entrySet().forEach(e -> record.headers().add(e.getKey(), e.getValue()));
+        this.producer.send(record);
     }
 
     @Override
-    public void publishBlocking(String topic, V message) {
+    public void publishBlocking(String topic, V message, Map<String, byte[]> headers) {
         try {
-            Future<RecordMetadata> future = this.producer.send(new ProducerRecord<>(topic, message));
+            final ProducerRecord<K, V> record = new ProducerRecord<>(topic, message);
+            headers.entrySet().forEach(e -> record.headers().add(e.getKey(), e.getValue()));
+            Future<RecordMetadata> future = this.producer.send(record);
             future.get();
         } catch (Exception e) {
             log.error("Error while publishing. topic: {}, message: {}, error: {}", topic, message, e.getMessage());
@@ -117,9 +131,11 @@ public class KafkaConnectProducer<K, V> implements MessagePublisher<K, V> {
     }
 
     @Override
-    public void publishNonBlocking(String topic, V message, BiConsumer<RecordMetadata, Exception> callback) {
+    public void publishNonBlocking(String topic, V message, Map<String, byte[]> headers, BiConsumer<RecordMetadata, Exception> callback) {
         try {
-            Future<RecordMetadata> future = this.producer.send(new ProducerRecord<>(topic, message), callback::accept);
+            final ProducerRecord<K, V> record = new ProducerRecord<>(topic, message);
+            headers.entrySet().forEach(e -> record.headers().add(e.getKey(), e.getValue()));
+            Future<RecordMetadata> future = this.producer.send(record, callback::accept);
             log.info("Message published: {}", future.toString());
         } catch (Exception e) {
             log.error("Error while sending: {}", e.getMessage());
