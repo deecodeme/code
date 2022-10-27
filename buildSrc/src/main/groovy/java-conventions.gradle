@@ -7,10 +7,6 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-repositories {
-    mavenCentral()
-}
-
 //java {
 //    toolchain {
 //        languageVersion = JavaLanguageVersion.of(17)
@@ -27,6 +23,7 @@ dependencies {
     annotationProcessor(libs.jmh.annotation.procesor)
     implementation(libs.jmh.core)
     implementation(libs.sl4j)
+    implementation(libs.sl4j.simple)
     implementation(libs.log4j2.sl4j)
     implementation(libs.log4j2.core)
     implementation(libs.log4j2.api)

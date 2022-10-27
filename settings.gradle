@@ -1,3 +1,12 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
+pluginManagement{
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'code'
 include 'JCache'
 include 'kafka'
@@ -8,8 +17,18 @@ include 'practices'
 include 'poc'
 include 'utils'
 include 'zookeeper'
+include 'codegen'
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            url 'https://packages.confluent.io/maven/'
+        }
+    }
+
     versionCatalogs {
         libs {
             version('lombok', '1.18.24')
@@ -23,6 +42,7 @@ dependencyResolutionManagement {
             library('jupiter-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef("jupiter")
             library('hamcrest', 'org.hamcrest', 'hamcrest').versionRef('hamcrest')
             library('sl4j', 'org.slf4j', 'slf4j-api').versionRef('sl4j')
+            library('sl4j-simple', 'org.slf4j', 'slf4j-simple').versionRef('sl4j')
             library('log4j2-sl4j', 'org.apache.logging.log4j', 'log4j-slf4j-impl').versionRef('log4j2')
             library('log4j2-core', 'org.apache.logging.log4j', 'log4j-core').versionRef('log4j2')
             library('log4j2-api', 'org.apache.logging.log4j', 'log4j-api').versionRef('log4j2')
