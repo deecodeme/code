@@ -37,6 +37,7 @@ dependencyResolutionManagement {
             version('sl4j', '2.0.2')
             version('hamcrest', '2.2')
             version('jmh', '1.35')
+            version('google.guava', '31.1-jre')
             library('lombok', 'org.projectlombok', 'lombok').versionRef('lombok')
             library('jupiter', 'org.junit.jupiter', 'junit-jupiter-api').versionRef("jupiter")
             library('jupiter-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef("jupiter")
@@ -48,6 +49,7 @@ dependencyResolutionManagement {
             library('log4j2-api', 'org.apache.logging.log4j', 'log4j-api').versionRef('log4j2')
             library('jmh-core', 'org.openjdk.jmh', 'jmh-core').versionRef('jmh')
             library('jmh-annotation-procesor', 'org.openjdk.jmh', 'jmh-generator-annprocess').versionRef('jmh')
+            library('google.guava', 'com.google.guava', 'guava').versionRef('google.guava')
         }
     }
 }

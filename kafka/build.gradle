@@ -13,4 +13,5 @@ dependencies {
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     implementation 'org.apache.avro:avro:1.11.1'
     implementation 'io.confluent:kafka-avro-serializer:5.3.0'
+    implementation(libs.google.guava)
 }
