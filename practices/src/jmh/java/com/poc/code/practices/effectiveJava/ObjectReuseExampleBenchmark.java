@@ -1,4 +1,4 @@
-package com.poc.code.effectiveJava;
+package com.poc.code.practices.effectiveJava;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
