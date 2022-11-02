@@ -1,6 +1,6 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode
 
-pluginManagement{
+pluginManagement {
     repositories {
         mavenCentral()
         gradlePluginPortal()
@@ -8,6 +8,7 @@ pluginManagement{
 }
 
 rootProject.name = 'code'
+include 'platform'
 include 'JCache'
 include 'kafka'
 include 'ps'
@@ -31,6 +32,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         libs {
+            version('checkstyle', '9.0')
             version('lombok', '1.18.24')
             version('jupiter', '5.8.1')
             version('log4j2', '2.19.0')
@@ -38,6 +40,9 @@ dependencyResolutionManagement {
             version('hamcrest', '2.2')
             version('jmh', '1.35')
             version('google.guava', '31.1-jre')
+            version('confluent', '5.3.0')
+            version('apache.avro', '1.11.1')
+            version('apache.kafka', '3.2.1')
             library('lombok', 'org.projectlombok', 'lombok').versionRef('lombok')
             library('jupiter', 'org.junit.jupiter', 'junit-jupiter-api').versionRef("jupiter")
             library('jupiter-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef("jupiter")
@@ -50,6 +55,12 @@ dependencyResolutionManagement {
             library('jmh-core', 'org.openjdk.jmh', 'jmh-core').versionRef('jmh')
             library('jmh-annotation-procesor', 'org.openjdk.jmh', 'jmh-generator-annprocess').versionRef('jmh')
             library('google.guava', 'com.google.guava', 'guava').versionRef('google.guava')
+            library('kafka-serializer-confluent', 'io.confluent', 'kafka-avro-serializer').versionRef('confluent')
+            library('apache-avro', 'org.apache.avro', 'avro').versionRef('apache.avro')
+            library('apache-kafka', 'org.apache.kafka','connect-api').versionRef('apache.kafka')
+            bundle('sl4j-log4j2', ['sl4j', 'sl4j-simple', 'log4j2-sl4j', 'log4j2-core', 'log4j2-api'])
+
+            plugin('avro', 'com.github.davidmc24.gradle.plugin.avro').version('1.5.0')
         }
     }
 }
