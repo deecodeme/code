@@ -1,4 +1,4 @@
-package com.poc.code.practices.designPatterns.Creational.factory;
+package com.poc.code.practices.designPatterns.Creational.factory.parameterized;
 
 public class TypeFactory {
     public Type getType(TypeEnum type) {
