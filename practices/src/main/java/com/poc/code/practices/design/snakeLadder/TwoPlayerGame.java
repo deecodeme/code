@@ -16,7 +16,7 @@ public class TwoPlayerGame extends Game {
                 int nextPos = board.moveTo(currentPos, diceVal);
                 player.setCurrentPos(nextPos);
                 System.out.printf("\n%s rolled a %s and moved from %s to %s", player.getName(), diceVal, currentPos,
-                        nextPos);
+                    nextPos);
                 if (board.isAWin(nextPos)) {
                     System.out.printf("\n%s won the game", player.getName());
                     return;

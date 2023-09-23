@@ -2,7 +2,7 @@ package com.poc.code.practices.design.SubDirectories;
 
 import java.util.Arrays;
 
-public class CommandParser{
+public class CommandParser {
     private CommandService commandService;
 
     public CommandParser() {

@@ -18,10 +18,10 @@ public class Balance {
     @Override
     public String toString() {
         return "Balance{" +
-                "userOwed=" + userOwed +
-                ", user=" + user +
-                ", amount=" + amount +
-                '}';
+            "userOwed=" + userOwed +
+            ", user=" + user +
+            ", amount=" + amount +
+            '}';
     }
 
     public Balance(User userOwed, User user, Float amount) {

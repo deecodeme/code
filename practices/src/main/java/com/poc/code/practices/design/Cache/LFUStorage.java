@@ -1,6 +1,6 @@
 package com.poc.code.practices.design.Cache;
 
-public class LFUStorage<T> implements Storage<T>, EvictableStorage<T>{
+public class LFUStorage<T> implements Storage<T>, EvictableStorage<T> {
     @Override
     public T evict() {
         return null;

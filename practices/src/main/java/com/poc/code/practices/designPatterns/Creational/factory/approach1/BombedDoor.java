@@ -2,7 +2,7 @@ package com.poc.code.practices.designPatterns.Creational.factory.approach1;
 
 import java.util.Objects;
 
-public class BombedDoor implements Door{
+public class BombedDoor implements Door {
     private int room1;
     private int room2;
     private boolean isBombed;
@@ -29,9 +29,9 @@ public class BombedDoor implements Door{
     @Override
     public String toString() {
         return "BombedDoor{" +
-                "room1=" + room1 +
-                ", room2=" + room2 +
-                ", isBombed=" + isBombed +
-                '}';
+            "room1=" + room1 +
+            ", room2=" + room2 +
+            ", isBombed=" + isBombed +
+            '}';
     }
 }

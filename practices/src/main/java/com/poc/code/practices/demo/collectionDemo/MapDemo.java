@@ -17,9 +17,9 @@ public class MapDemo {
         @Override
         public String toString() {
             return "Interval{" +
-                    "start=" + start +
-                    ", end=" + end +
-                    '}';
+                "start=" + start +
+                ", end=" + end +
+                '}';
         }
     }
 

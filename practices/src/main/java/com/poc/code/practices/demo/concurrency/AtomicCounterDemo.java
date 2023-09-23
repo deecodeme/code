@@ -8,15 +8,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AtomicCounterDemo {
     private final AtomicInteger counter = new AtomicInteger(1000);
 
-    public int getValue(){
+    public int getValue() {
         return counter.get();
     }
 
-    public void increment(){
+    public void increment() {
         counter.incrementAndGet();
     }
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         AtomicCounterDemo counterService = new AtomicCounterDemo();
 

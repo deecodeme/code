@@ -49,7 +49,7 @@ public class TaskSchedulerImpl implements TaskScheduler {
             }
         } catch (InterruptedException ex) {
             logger.log(Level.SEVERE, String.format("Error while scheduling task. Error: %s",
-                    ex.getMessage()));
+                ex.getMessage()));
         } finally {
             lock.unlock();
         }
@@ -77,7 +77,7 @@ public class TaskSchedulerImpl implements TaskScheduler {
             newTasksArrived.signalAll();
         } catch (Exception ex) {
             logger.log(Level.SEVERE, String.format("Error while scheduling task. Error: %s, Task: %s",
-                    ex.getMessage(), recurringTask.toString()));
+                ex.getMessage(), recurringTask.toString()));
         } finally {
             this.lock.unlock();
         }

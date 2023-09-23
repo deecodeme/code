@@ -40,9 +40,9 @@ public class PlayRequest {
     @Override
     public String toString() {
         return "PlayRequest{" +
-                "player=" + player +
-                ", level=" + level +
-                ", requestedAt=" + requestedAt +
-                '}';
+            "player=" + player +
+            ", level=" + level +
+            ", requestedAt=" + requestedAt +
+            '}';
     }
 }

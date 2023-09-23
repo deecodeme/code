@@ -38,10 +38,10 @@ public class TransferRequest {
     @Override
     public String toString() {
         return "TransferRequest{" +
-                "from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", amount=" + amount +
-                ", requestId='" + requestId + '\'' +
-                '}';
+            "from='" + from + '\'' +
+            ", to='" + to + '\'' +
+            ", amount=" + amount +
+            ", requestId='" + requestId + '\'' +
+            '}';
     }
 }

@@ -30,8 +30,8 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
-                ", level=" + level +
-                '}';
+            "name='" + name + '\'' +
+            ", level=" + level +
+            '}';
     }
 }
