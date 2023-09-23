@@ -5,11 +5,12 @@ import java.util.concurrent.Executors;
 
 public class CommandExecutor {
     private static int maxThreads = 4;
-    public static void main(String args[]){
+
+    public static void main(String args[]) {
         Executor executor = Executors.newFixedThreadPool(maxThreads);
         CommandParser commandParser = new CommandParser();
 
-        Thread t = new Thread(){
+        Thread t = new Thread() {
             @Override
             public void run() {
                 commandParser.execute(Command.MKDIR.getValue(), "c1");

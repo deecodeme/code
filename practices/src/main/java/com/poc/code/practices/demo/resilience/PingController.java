@@ -12,21 +12,17 @@ public class PingController {
     @Autowired
     private Downstream downstream;
 
+    @Autowired
+    private DownstreamAnnotated downstreamAnnotated;
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public String ping(@RequestParam String type) {
-        log.info("Ping request received");
         try {
-            if ("1".equals(type)) {
-                return downstream.callDownstream();
-            } else if ("2".equals(type)) {
-                return downstream.callDownstreamFeignClient();
-            } else {
-                return downstream.callDownstreamUsingResilience();
-            }
+            return downstream.callDownstreamUsingResilience();
         } catch (Exception ex) {
-            log.error("Exception: {}", ex);
+            log.error("Exception: {}", ex.getMessage());
             return "Failure";
         }
     }

@@ -17,7 +17,7 @@ public class MultiplayerGame extends Game {
                 int nextPos = board.moveTo(currentPos, diceVal);
                 player.setCurrentPos(nextPos);
                 System.out.printf("\n%s rolled a %s and moved from %s to %s", player.getName(), diceVal, currentPos,
-                        nextPos);
+                    nextPos);
                 if (board.isAWin(nextPos)) {
                     playerPlaying--;
                 }

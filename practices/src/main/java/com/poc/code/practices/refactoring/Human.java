@@ -8,15 +8,15 @@ public class Human {
     public String getFullAddress() {
         StringBuilder result = new StringBuilder();
         return result
-                .append(address.country)
-                .append(", ")
-                .append(address.city)
-                .append(", ")
-                .append(address.street)
-                .append(", ")
-                .append(address.house)
-                .append(" ")
-                .append(address.quarter).toString();
+            .append(address.country)
+            .append(", ")
+            .append(address.city)
+            .append(", ")
+            .append(address.street)
+            .append(", ")
+            .append(address.house)
+            .append(" ")
+            .append(address.quarter).toString();
     }
 
 }

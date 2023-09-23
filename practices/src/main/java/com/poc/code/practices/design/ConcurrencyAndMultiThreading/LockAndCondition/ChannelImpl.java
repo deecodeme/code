@@ -27,7 +27,7 @@ public class ChannelImpl implements Channel {
             boolean isAdded = queue.offer(val);
             if (isAdded) {
                 System.out.printf("%d Item added to channel successfully, thread: %s \n",
-                        val, Thread.currentThread().getName());
+                    val, Thread.currentThread().getName());
                 System.out.println(Thread.currentThread().getName() + " Signalling that, buffer is not empty anymore");
                 bufferNotEmpty.signalAll();
             }

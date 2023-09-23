@@ -3,7 +3,7 @@ package com.poc.code.practices.effectiveJava.serviceProviderFramework.example.cl
 import com.poc.code.practices.effectiveJava.serviceProviderFramework.example.framework.Providers;
 import com.poc.code.practices.effectiveJava.serviceProviderFramework.example.framework.Provider;
 
-public class ProviderAUser implements ProviderUser{
+public class ProviderAUser implements ProviderUser {
     private Provider provider;
 
     private ProviderAUser(Provider provider) {

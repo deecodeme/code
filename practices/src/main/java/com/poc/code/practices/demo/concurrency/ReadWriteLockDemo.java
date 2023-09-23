@@ -43,17 +43,17 @@ public class ReadWriteLockDemo {
 
         Runnable readTask = () -> {
             System.out.printf("%s : read task : counter value : %s \n", Thread.currentThread().getName(),
-                    counterService.getValue());
+                counterService.getValue());
         };
 
         Runnable writeTask1 = () -> {
             System.out.printf("%s : write task1 : counter value after increase: %s \n", Thread.currentThread().getName(),
-                    counterService.incrementAndGet());
+                counterService.incrementAndGet());
         };
 
         Runnable writeTask2 = () -> {
             System.out.printf("%s : write task2 : counter value after increase: %s \n", Thread.currentThread().getName(),
-                    counterService.incrementAndGet());
+                counterService.incrementAndGet());
         };
 
         boolean read = false;

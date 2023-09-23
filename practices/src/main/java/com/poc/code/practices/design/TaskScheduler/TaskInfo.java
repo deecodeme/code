@@ -10,7 +10,7 @@ public class TaskInfo {
     @Override
     public String toString() {
         return "TaskInfo{" +
-                "name='" + name + '\'' +
-                '}';
+            "name='" + name + '\'' +
+            '}';
     }
 }

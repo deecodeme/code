@@ -4,14 +4,18 @@ management:
       exposure:
         include: health,prometheus,metrics,retries,retryevents,env,heapdump
 
-resilien4j.retry:
-  instances:
-    downstream:
-      maxAttempts: 3
-      waitDuration: 2s
-      enableExponentialBackoff: true
-      exponentialBackoffMultiplier: 1
-      retryExceptions:
-        - java.io.IOException
-        - java.net.ConnectException
-        - feign.RetryableException
+resilience4j:
+  retry:
+    instances:
+      downstream:
+        maxAttempts: 3
+        waitDuration: 2s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 1
+        retryExceptions:
+          - java.io.IOException
+  timeLimiter:
+    instances:
+      downstream:
+        timeoutDuration: 1s
+        cancelRunningFuture: true

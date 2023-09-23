@@ -13,18 +13,18 @@ public class Semaphores {
 
         Runnable task = () -> {
             boolean isAcquired = false;
-            try{
+            try {
                 isAcquired = semaphore.tryAcquire(1);
-                if (isAcquired){
+                if (isAcquired) {
                     System.out.println("Semaphore acquired");
                     Thread.sleep(10);
-                }else{
+                } else {
                     System.out.println("Semaphore could not be acquired");
                 }
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 System.out.println("Exception: " + e.getMessage());
-            }finally {
-                if (isAcquired){
+            } finally {
+                if (isAcquired) {
                     semaphore.release();
                 }
             }

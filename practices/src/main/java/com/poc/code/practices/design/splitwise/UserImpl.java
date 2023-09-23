@@ -16,9 +16,9 @@ public class UserImpl implements User {
     @Override
     public String toString() {
         return "UserImpl{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
     }
 
     @Override

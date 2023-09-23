@@ -31,13 +31,13 @@ public class StockExchangeApplication {
 
     private static Order parseOrder(String[] str) {
         return Order.builder()
-                .orderType(ORDER_TYPE_BUY.equals(str[3]) ? OrderType.BUY : OrderType.SELL)
-                .orderId(str[0])
-                .placedAt(str[1])
-                .stock(str[2])
-                .price(BigDecimal.valueOf(Double.parseDouble(str[4])))
-                .quantity(Integer.parseInt(str[5]))
-                .remaingQuantity(Integer.parseInt(str[5]))
-                .build();
+            .orderType(ORDER_TYPE_BUY.equals(str[3]) ? OrderType.BUY : OrderType.SELL)
+            .orderId(str[0])
+            .placedAt(str[1])
+            .stock(str[2])
+            .price(BigDecimal.valueOf(Double.parseDouble(str[4])))
+            .quantity(Integer.parseInt(str[5]))
+            .remaingQuantity(Integer.parseInt(str[5]))
+            .build();
     }
 }

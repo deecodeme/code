@@ -20,6 +20,7 @@ dependencies {
     jmhAnnotationProcessor(libs.jmh.annotation.procesor)
     implementation 'org.eclipse.jdt:core:3.3.0-v_771'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'io.micrometer:micrometer-core:1.10.6'
     implementation 'io.micrometer:micrometer-registry-prometheus:1.10.6'
@@ -29,6 +30,9 @@ dependencies {
     implementation 'io.github.openfeign:feign-okhttp:11.7'
     implementation 'io.github.resilience4j:resilience4j-feign:1.7.0'
     implementation 'io.github.resilience4j:resilience4j-all:1.7.0'
+
+    //Resilience4j Spring way
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.0'
 }
 
 configurations.all {
