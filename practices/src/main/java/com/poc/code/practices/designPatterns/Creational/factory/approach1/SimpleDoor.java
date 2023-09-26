@@ -2,7 +2,7 @@ package com.poc.code.practices.designPatterns.Creational.factory.approach1;
 
 import java.util.Objects;
 
-public class SimpleDoor implements Door{
+public class SimpleDoor implements Door {
     int room1;
     int room2;
 
@@ -27,8 +27,8 @@ public class SimpleDoor implements Door{
     @Override
     public String toString() {
         return "SimpleDoor{" +
-                "room1=" + room1 +
-                ", room2=" + room2 +
-                '}';
+            "room1=" + room1 +
+            ", room2=" + room2 +
+            '}';
     }
 }

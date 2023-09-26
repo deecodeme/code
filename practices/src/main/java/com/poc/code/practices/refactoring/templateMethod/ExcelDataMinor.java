@@ -2,7 +2,7 @@ package com.poc.code.practices.refactoring.templateMethod;
 
 import java.io.File;
 
-public class ExcelDataMinor extends DataMiner{
+public class ExcelDataMinor extends DataMiner {
     @Override
     protected Object openFile(File file) {
         System.out.println("Opening file");

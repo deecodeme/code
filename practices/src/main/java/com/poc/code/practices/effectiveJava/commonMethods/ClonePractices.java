@@ -143,16 +143,16 @@ public class ClonePractices {
         }
 
         /**
-        “Suppose you want to make this class cloneable. If the clone method merely returns super.clone(),
-         the resulting Stack instance will have the correct value in its size field,
-         but its elements field will refer to the same array as the original Stack instance. Modifying the original will destroy the invariants in the clone and vice
-        versa. You will quickly find that your program produces nonsensical results or throws a NullPointerException.
-
-         This situation could never occur as a result of calling the sole constructor in the Stack class.
-         In effect, the clone method functions as a constructor; you must ensure that it does no harm to the original
-         object and that it properly establishes invariants on the clone. In order for the clone method on Stack to work properly,
-         it must copy the internals of the stack. The easiest way to do
-         this is to call clone recursively on the elements array:”
+         * “Suppose you want to make this class cloneable. If the clone method merely returns super.clone(),
+         * the resulting Stack instance will have the correct value in its size field,
+         * but its elements field will refer to the same array as the original Stack instance. Modifying the original will destroy the invariants in the clone and vice
+         * versa. You will quickly find that your program produces nonsensical results or throws a NullPointerException.
+         * <p>
+         * This situation could never occur as a result of calling the sole constructor in the Stack class.
+         * In effect, the clone method functions as a constructor; you must ensure that it does no harm to the original
+         * object and that it properly establishes invariants on the clone. In order for the clone method on Stack to work properly,
+         * it must copy the internals of the stack. The easiest way to do
+         * this is to call clone recursively on the elements array:”
          */
         @Override
         public Stack clone() {

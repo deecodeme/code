@@ -61,22 +61,22 @@ public class TradeServiceImpl implements TradeService, Consumer {
             Order sellOrder = this.sellOrdersQueue.poll();
             if (sellOrder.getQuantity() > buyOrder.getRemaingQuantity()) { // full quantity can be sold out
                 trades.add(Trade
-                        .builder()
-                        .buyOrderId(buyOrder.getOrderId())
-                        .tradePrice(sellOrder.getPrice())
-                        .quantity(buyOrder.getRemaingQuantity())
-                        .sellOrderId(sellOrder.getOrderId()).build());
+                    .builder()
+                    .buyOrderId(buyOrder.getOrderId())
+                    .tradePrice(sellOrder.getPrice())
+                    .quantity(buyOrder.getRemaingQuantity())
+                    .sellOrderId(sellOrder.getOrderId()).build());
                 sellOrder.setQuantity(sellOrder.getQuantity() - buyOrder.getRemaingQuantity());
                 this.sellOrdersQueue.offer(sellOrder);
                 buyOrder.setRemaingQuantity(0);
                 break;
             } else { // sell order quantity less than buy order quantity
                 trades.add(Trade
-                        .builder()
-                        .buyOrderId(buyOrder.getOrderId())
-                        .tradePrice(sellOrder.getPrice())
-                        .quantity(sellOrder.getQuantity())
-                        .sellOrderId(sellOrder.getOrderId()).build());
+                    .builder()
+                    .buyOrderId(buyOrder.getOrderId())
+                    .tradePrice(sellOrder.getPrice())
+                    .quantity(sellOrder.getQuantity())
+                    .sellOrderId(sellOrder.getOrderId()).build());
                 buyOrder.setRemaingQuantity(buyOrder.getRemaingQuantity() - sellOrder.getQuantity());
             }
         }

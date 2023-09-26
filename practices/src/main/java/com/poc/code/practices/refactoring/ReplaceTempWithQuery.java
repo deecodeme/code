@@ -2,7 +2,7 @@ package com.poc.code.practices.refactoring;
 
 public class ReplaceTempWithQuery {
     public void method() {
-        String str ="str";
+        String str = "str";
         System.out.println(aString(str));
     }
 

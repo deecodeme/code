@@ -11,6 +11,7 @@ public class PreferTryWithResourceOverFinally {
     /**
      * Looks clean with autocloseable and try with resource
      * Preferable
+     *
      * @param path
      */
     public void readFileTryWithResources(String path) {
@@ -25,6 +26,7 @@ public class PreferTryWithResourceOverFinally {
 
     /**
      * Looks clean with autocloseable and try with multiple resource. Preferable
+     *
      * @param srcPath
      * @param tarPath
      */

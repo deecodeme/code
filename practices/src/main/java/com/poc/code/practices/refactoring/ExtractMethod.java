@@ -2,6 +2,7 @@ package com.poc.code.practices.refactoring;
 
 public class ExtractMethod {
     private String name;
+
     void printOwing() {
         //printBanner();
 
@@ -14,7 +15,7 @@ public class ExtractMethod {
         System.out.println("amount: " + getOutstanding());
     }
 
-    private String getOutstanding(){
+    private String getOutstanding() {
         return null;
     }
 }

@@ -6,7 +6,7 @@ public class SubClassB extends SuperClass {
         System.out.println("Constructor SubClassB");
     }
 
-    public void method(){
+    public void method() {
         System.out.println("Greetings! from method");
     }
 }

@@ -28,7 +28,7 @@ public class LazyStaticFactory implements Singleton {
     @Override
     public String toString() {
         return "LazyStaticFactory{" +
-                "instanceCreatedAt=" + instanceCreatedAt +
-                '}';
+            "instanceCreatedAt=" + instanceCreatedAt +
+            '}';
     }
 }

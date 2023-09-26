@@ -25,12 +25,12 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "orderId='" + orderId + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", remaingQuantity=" + remaingQuantity +
-                ", placedAt='" + placedAt + '\'' +
-                ", stock='" + stock + '\'' +
-                '}';
+            "orderId='" + orderId + '\'' +
+            ", price=" + price +
+            ", quantity=" + quantity +
+            ", remaingQuantity=" + remaingQuantity +
+            ", placedAt='" + placedAt + '\'' +
+            ", stock='" + stock + '\'' +
+            '}';
     }
 }
