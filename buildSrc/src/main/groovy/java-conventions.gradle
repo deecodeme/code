@@ -25,6 +25,7 @@ dependencies {
     implementation libs.bundles.sl4j.log4j2
     testImplementation(libs.jupiter)
     testRuntimeOnly(libs.jupiter.engine)
+    testImplementation(libs.assertj)
 }
 
 test {
