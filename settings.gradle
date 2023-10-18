@@ -43,6 +43,7 @@ dependencyResolutionManagement {
             version('confluent', '5.3.0')
             version('apache.avro', '1.11.1')
             version('apache.kafka', '3.2.1')
+            version('assertj', '3.21.0')
             library('lombok', 'org.projectlombok', 'lombok').versionRef('lombok')
             library('jupiter', 'org.junit.jupiter', 'junit-jupiter-api').versionRef("jupiter")
             library('jupiter-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef("jupiter")
@@ -58,6 +59,7 @@ dependencyResolutionManagement {
             library('kafka-serializer-confluent', 'io.confluent', 'kafka-avro-serializer').versionRef('confluent')
             library('apache-avro', 'org.apache.avro', 'avro').versionRef('apache.avro')
             library('apache-kafka', 'org.apache.kafka','connect-api').versionRef('apache.kafka')
+            library('assertj', 'org.assertj', 'assertj-core').versionRef('assertj')
             bundle('sl4j-log4j2', ['sl4j', 'sl4j-simple', 'log4j2-sl4j', 'log4j2-core', 'log4j2-api'])
 
             plugin('avro', 'com.github.davidmc24.gradle.plugin.avro').version('1.5.0')
