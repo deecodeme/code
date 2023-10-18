@@ -15,7 +15,15 @@ resilience4j:
         retryExceptions:
           - java.io.IOException
   timeLimiter:
+    configs:
+      default:
+        timeoutDuration: 5s
+        eventConsumerBufferSize: '100'
+        cancelRunningFuture: 'true'
     instances:
       downstream:
-        timeoutDuration: 1s
+        timeoutDuration: 2s
         cancelRunningFuture: true
+
+timeLimit:
+  default: 5s
