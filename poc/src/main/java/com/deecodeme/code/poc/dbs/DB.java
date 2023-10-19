@@ -1,4 +1,4 @@
-package com.poc.code.poc.dbs;
+package com.deecodeme.code.poc.dbs;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

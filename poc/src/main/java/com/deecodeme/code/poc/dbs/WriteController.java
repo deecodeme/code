@@ -1,4 +1,4 @@
-package com.poc.code.poc.dbs;
+package com.deecodeme.code.poc.dbs;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
