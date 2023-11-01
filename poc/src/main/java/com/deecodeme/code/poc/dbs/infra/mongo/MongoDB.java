@@ -1,7 +1,7 @@
-package com.poc.code.poc.dbs.infra.mongo;
+package com.deecodeme.code.poc.dbs.infra.mongo;
 
-import com.poc.code.poc.dbs.DB;
-import com.poc.code.poc.dbs.Database;
+import com.deecodeme.code.poc.dbs.DB;
+import com.deecodeme.code.poc.dbs.Database;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 

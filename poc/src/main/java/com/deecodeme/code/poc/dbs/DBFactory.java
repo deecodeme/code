@@ -1,4 +1,4 @@
-package com.poc.code.poc.dbs;
+package com.deecodeme.code.poc.dbs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
