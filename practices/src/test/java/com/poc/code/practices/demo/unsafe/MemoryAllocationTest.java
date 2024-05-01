@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.poc.code.practices.demo.unsafe;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.poc.code.practices.demo.varHandle;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +12,6 @@ class ArrayHandleTest {
     void setArrayElement() {
         Assertions.assertEquals(105, ArrayHandle.setArrayElement(105));
     }
-
 
     @Test
     void compareAndSet() {

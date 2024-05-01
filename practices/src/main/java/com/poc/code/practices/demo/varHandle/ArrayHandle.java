@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.poc.code.practices.demo.varHandle;
 
 import java.lang.invoke.MethodHandles;
@@ -7,7 +8,7 @@ public class ArrayHandle {
     public static int setArrayElement(int val) {
         int[] array = new int[10];
 
-        //Get a varHandle for array element
+        // Get a varHandle for array element
         VarHandle arrayHandle = MethodHandles.arrayElementVarHandle(int[].class);
 
         // Use the varHandle to access an element
@@ -27,6 +28,4 @@ public class ArrayHandle {
         }
         return (int) arrayHandle.getVolatile(array, index);
     }
-
-
 }
